@@ -2,11 +2,10 @@
 # ------------
 
 #TODO change TOOLCHAIN variable to your toolchain path 
-TOOLCHAIN= /usr/bin/arm-angstrom-linux-gnueabi-
+TOOLCHAIN= arm-frc-linux-gnueabi-
 CC= $(TOOLCHAIN)gcc
 LD= $(TOOLCHAIN)gcc
 CXX=$(CC)
-
 
 SRCS+= adb.c
 SRCS+= fdevent.c
@@ -68,6 +67,7 @@ CPPFLAGS+= -I../base/include
 CFLAGS+= -O2 -g -Wall -Wno-unused-parameter
 
 LIBS= -lcrypto -lpthread -lrt 
+LDFLAGS = -L$(LD_PRELOAD)
  
 OBJS= $(SRCS:.c=.o)
  

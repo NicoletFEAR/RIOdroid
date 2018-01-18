@@ -11,7 +11,8 @@
 # -------------------------
 
 # Branch to checkout from Android source code repo
-branch=android-6.0.0_r1
+#branch=android-4.4.4_r2.0.1
+branch=android-5.1.1_r1
 
 # Makefile to use (will be automatically copied into system/core/adb)
 makefile=makefile
@@ -31,7 +32,7 @@ cd ..
 mkdir external
 cd external
 git clone -b $branch https://android.googlesource.com/platform/external/zlib
-git clone -b $branch https://android.googlesource.com/platform/external/openssl
+git clone -b android-5.1.1_r1 https://android.googlesource.com/platform/external/openssl
 git clone -b $branch https://android.googlesource.com/platform/external/libselinux
 cd ..
 
@@ -39,12 +40,14 @@ cd ..
 # MAKE
 # -------------------------
 echo "\n>> Copying makefile into system/core/adb...\n"
-cp ../$makefile system/core/adb/makefile -f
+cp -f ../$makefile system/core/adb/makefile
+mkdir system/core/adb/lib
+cp -f ../libcrypto.so system/core/adb/lib
 cd system/core/adb/
+export LD_PRELOAD="$(PWD)/lib"
 echo "\n>> Make... \n"
 make clean
 make
 echo "\n>> Copying adb back into current dir...\n"
 cp adb ../../../../
 echo "\n>> FINISH!\n"
-
