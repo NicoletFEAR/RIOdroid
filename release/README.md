@@ -1,4 +1,8 @@
-#RIOdroid by Spectrum3847
+#RIOdroid (originally) by Spectrum3847
+
+Team8 forked this project form Spectrum3847 and updated adb to use SSL for the 2018 FRC RoboRIO update
+Team 4786, Nicolet FEAR, forked this project from Team8 with updates necessary for 2019 FRC RoboRIO
+
 ####What is RIOdroid?
 RIOdroid is a package that allows an NI RoboRIO to communicate with an Android Device that is connected to it's USB port.
 
@@ -22,8 +26,8 @@ Potential/Unsure - Use android device as wifi adapter in place for router at dem
 
 ###Install Instructions
 ####Quick Instructions
-1. Download RIOdroid.zip from https://github.com/Spectrum3847/RIOdroid/tree/master/release
-2. Extract RIOdroid.zip
+1. Download RIOdroid.zip from https://github.com/NicoletFEAR/RIOdroid/tree/master/release
+2. Extract RIOdroid v0.1.2.zip
 3. copy RIOdroid.tar.gz and RIOdroid.sh to /home/admin on the RoboRIO
 4. Run the RIOdroid.sh script from that directory
 5. Use the RIOdroid.jar file in your java code to access Android Debug Bridge and usb4java code.
@@ -53,12 +57,21 @@ Potential/Unsure - Use android device as wifi adapter in place for router at dem
 		adb devices
 	- That should have started the adb services and displayed that in the PuTTY window
 
-4. Now you can use the library .jar file in your project. You will need to add this to your build script. This will be easy in 2016.
+4. Now you can use the library .jar file in your project. You will need to add this to your build script.
+For VS Code
+    - copy the RIODroid.jar file into a /libs/ directory at the same level as your /src/ directory
+    - add the libs directory to your build.gradle dependencies
+    ```java
+    dependencies {
+        ...
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+    }
+    ```
 
 5. The example file provided forwards a port from an android device running the IP Webcam app to the external ports of the roborio.
 So that you can connect to it at roborio-XXXX.local:8080 and view the camera image.
 
-###Liscense Stuff
+###License Stuff
 This code is heavily based on code provided by
 Android Open Source Project (https://source.android.com/)
 usb4java (http://usb4java.org/)
@@ -69,7 +82,7 @@ and android.serverbox.ch
 
 Thank you to everyone that worked on these projects and provided open source software for the community to use.
 
-These files were released under various liscenses Apache, GPL2, etc.
-I've included the liscense files everywhere, we think. If we missed something please let us know.
+These files were released under various licenses Apache, GPL2, etc.
+I've included the license files everywhere, we think. If we missed something please let us know.
 
-Any of the modifications and code that we wrote is fair game to be used by anyone.
+Any of the modifications and code that we wrote are fair game to be used by anyone.
